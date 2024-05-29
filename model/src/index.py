@@ -1,7 +1,6 @@
 from src.model.prompt import tokenizer, create_prompt, decode_response
 from src.model.model import generate, load_model
 from src.config.generation import generation_config
-from src.music.render import render_wav
 from src.helpers.check_gpu import check_gpu
 import src.server.serve as server
 import json
@@ -70,11 +69,3 @@ def run(args):
         client_left_fn=None,
         message_received_fn=None,
     )
-
-    inputs = create_prompt(tokenizer, instruction)
-    response = generate(inputs, tokenizer.eos_token_id, generation_config)
-    result = decode_response(tokenizer, response, inputs)
-
-    print(result)
-
-    render_wav(result, args[0])
