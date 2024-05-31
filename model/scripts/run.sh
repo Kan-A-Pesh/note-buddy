@@ -9,5 +9,7 @@ docker run -it --rm \
     -v $(pwd)/out:/app/out \
     -v $(pwd)/cache:/app/.cache \
     --gpus all \
+    -p 5353:5333 \
     -e LOW_MEMORY=1 \
+    -e PORT=5333 \
     note-buddy
