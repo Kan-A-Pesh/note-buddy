@@ -2,26 +2,4 @@ version: "3.7"
 
 include:
     - supabase/docker/docker-compose.yml
-
-services:
-    model:
-        build:
-            context: model
-            dockerfile: Dockerfile
-        container_name: model
-        volumes:
-            - ./model/out:/app/out
-            - ./model/cache:/app/.cache
-        environment:
-            - LOW_MEMORY=1
-            - PORT=8080
-        ports:
-            - "0.0.0.0:5343:8080"
-        deploy:
-            resources:
-                reservations:
-                    devices:
-                        - driver: nvidia
-                          count: 1
-                          capabilities: [gpu]
-#   interface:
+    # - model/docker/docker-compose.dev.yml
