@@ -10,9 +10,8 @@ def load_model():
         "m-a-p/ChatMusician",
         torch_dtype=capacities_conf["model"]["torch_dtype"],
         device_map=capacities_conf["model"]["device_map"],
-        resume_download=True,
         quantization_config=capacities_conf["model"]["quantization"],
-    ).eval()
+    )
 
 
 def generate(inputs, eos_token_id, config):

@@ -72,12 +72,17 @@ def broadcast(message):
 
 def serve(new_client_fn, client_left_fn, message_received_fn):
     global server
+
+    print(f"SERVER: [*] Registering callbacks")
     callbacks["new_client"] = new_client_fn
     callbacks["client_left"] = client_left_fn
     callbacks["message_received"] = message_received_fn
 
     server = WebsocketServer(port=server_conf["port"])
+
     server.set_fn_new_client(new_client)
     server.set_fn_client_left(client_left)
     server.set_fn_message_received(message_received)
+
+    print(f"SERVER: [*] Starting server on port {server_conf['port']}")
     server.run_forever()
