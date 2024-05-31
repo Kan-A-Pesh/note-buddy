@@ -3,18 +3,6 @@ from websocket_server import WebsocketServer
 import json
 from datetime import datetime
 
-response_types = {
-    "ACK": 0,
-    "SUCCESS": 1,
-    "ERROR": 2,
-    "START": 3,
-    "DATA": 4,
-    "END": 5,
-    "PING": 6,
-    "PONG": 7,
-    "REQUEST": 8,
-}
-
 server = None
 callbacks = {
     "new_client": None,
@@ -78,7 +66,9 @@ def serve(new_client_fn, client_left_fn, message_received_fn):
     callbacks["client_left"] = client_left_fn
     callbacks["message_received"] = message_received_fn
 
-    server = WebsocketServer(port=server_conf["port"])
+    server = WebsocketServer(
+        host="0.0.0.0", port=server_conf["port"], loglevel=server_conf["loglevel"]
+    )
 
     server.set_fn_new_client(new_client)
     server.set_fn_client_left(client_left)
