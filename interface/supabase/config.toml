@@ -48,7 +48,7 @@ enabled = true
 [auth]
 enabled = true
 site_url = "env(NEXT_PUBLIC_SITE_URL)"
-additional_redirect_urls = ["env(NEXT_PUBLIC_AUTH_CALLBACK_URL)"]
+# additional_redirect_urls = ["env(NEXT_PUBLIC_SITE_URL)", "env(NEXT_PUBLIC_AUTH_CALLBACK_URL)"]
 jwt_expiry = 3600 # 1 hour (default: 3600)
 
 # If disabled, the refresh token will never expire.
@@ -61,7 +61,7 @@ enable_anonymous_sign_ins = false
 enable_manual_linking = false
 
 [auth.email]
-enable_signup = false
+enable_signup = true
 # If enabled, a user will be required to confirm any email change on both the old, and new email
 # addresses. If disabled, only the new email is required to confirm.
 double_confirm_changes = false
@@ -99,7 +99,7 @@ max_frequency = "90s"
 # `apple`, `azure`, `bitbucket`, `discord`, `facebook`, `github`, `gitlab`, `google`,
 # `keycloak`, `linkedin_oidc`, `notion`, `twitch`, `twitter`, `slack`, `spotify`, `workos`, `zoom`.
 [auth.external.discord]
-enabled = true
+enabled = false
 client_id = "env(DISCORD_CLIENT_ID)"
 secret = "env(DISCORD_CLIENT_SECRET)"
 redirect_uri = "env(NEXT_PUBLIC_AUTH_CALLBACK_URL)"
