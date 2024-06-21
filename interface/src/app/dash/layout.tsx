@@ -1,5 +1,6 @@
 "use server";
 
+import Sidebar from "@/components/layout/Sidebar";
 import { createClient } from "@/utils/supabase/server";
 import { redirect } from "next/navigation";
 
@@ -16,5 +17,12 @@ export default async function AuthLayout({
         redirect("/auth/login");
     }
 
-    return children;
+    return (
+        <>
+            <Sidebar />
+            <main className="ml:0 sm:ml-64 grow bg-gray-1000 grid">
+                {children}
+            </main>
+        </>
+    );
 }

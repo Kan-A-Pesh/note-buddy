@@ -1,20 +1,28 @@
 "use server";
 
 import { createClient } from "@/utils/supabase/server";
+import { Suspense } from "react";
+import ProjectEmpty from "./ProjectEmpty";
+import ProjectList from "./ProjectList";
 
 export default async function PrivatePage() {
     const supabase = createClient();
 
-    const { data, error } = await supabase.auth.getUser();
-    if (error || !data?.user) {
-        return (
-            <>
-                <p>Error: {error?.message ?? "An error occurred"}</p>
-                <p>Data: {JSON.stringify(data)}</p>
-                <a href="/auth/login">Login</a>
-            </>
-        );
+    const userProjects = await supabase.from("projects").select("*");
+
+    if (userProjects.error) {
+        return <div>{userProjects.error.message}</div>;
     }
 
-    return <p>Hello {data.user.email}</p>;
+    return (
+        <div className="p-4 h-full flex flex-col">
+            <Suspense fallback={<div>Loading...</div>}>
+                {!userProjects.data || userProjects.data.length === 0 ? (
+                    <ProjectEmpty />
+                ) : (
+                    <ProjectList projects={userProjects.data} />
+                )}
+            </Suspense>
+        </div>
+    );
 }

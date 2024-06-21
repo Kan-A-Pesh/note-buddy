@@ -1,7 +1,10 @@
+"use server";
+
 import { type CookieOptions, createServerClient } from "@supabase/ssr";
+import { Database } from "#t/supabase";
 
 export function createClient(cookieStore: any) {
-    return createServerClient(
+    return createServerClient<Database>(
         process.env.NEXT_PUBLIC_SUPABASE_URL!,
         process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
         {

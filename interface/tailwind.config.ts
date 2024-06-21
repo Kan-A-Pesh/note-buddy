@@ -3,9 +3,51 @@ import { fontFamily } from "tailwindcss/defaultTheme";
 import type { Config } from "tailwindcss";
 const config = {
     darkMode: ["class"],
-    content: ["./pages/**/*.{ts,tsx}", "./components/**/*.{ts,tsx}", "./app/**/*.{ts,tsx}", "./src/**/*.{ts,tsx}"],
+    content: [
+        "./pages/**/*.{ts,tsx}",
+        "./components/**/*.{ts,tsx}",
+        "./app/**/*.{ts,tsx}",
+        "./src/**/*.{ts,tsx}",
+    ],
     prefix: "",
     theme: {
+        colors: {
+            primary: {
+                "100": "#ECDDFD",
+                "200": "#D7BCFC",
+                "300": "#BE99F7",
+                "400": "#AA7BFB",
+                "500": "#8455E7",
+                "600": "#653EC6",
+                "700": "#522AA6",
+                "800": "#431B85",
+                "900": "#34106E",
+            },
+            secondary: {
+                "100": "#F9FDE9",
+                "200": "#F2FCD4",
+                "300": "#E6F7BC",
+                "400": "#D8F0A8",
+                "500": "#C4E68A",
+                "600": "#AECE7D",
+                "700": "#799852",
+                "800": "#5A6B47",
+                "900": "#444E3A",
+            },
+            gray: {
+                "1100": "#0B080F",
+                "1000": "#120E18",
+                "900": "#25222A",
+                "800": "#403D43",
+                "700": "#59565C",
+                "600": "#757279",
+                "500": "#8C898F",
+                "400": "#A6A3A9",
+                "300": "#BFBDC1",
+                "200": "#D9D8DA",
+                "100": "#E6E5E7",
+            },
+        },
         container: {
             center: true,
             padding: "2rem",
@@ -48,11 +90,6 @@ const config = {
                     DEFAULT: "hsl(var(--card))",
                     foreground: "hsl(var(--card-foreground))",
                 },
-            },
-            borderRadius: {
-                lg: "var(--radius)",
-                md: "calc(var(--radius) - 2px)",
-                sm: "calc(var(--radius) - 4px)",
             },
             keyframes: {
                 "accordion-down": {
