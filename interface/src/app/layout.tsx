@@ -4,6 +4,7 @@ import { cn } from "@/lib/utils";
 import { Poppins } from "next/font/google";
 
 import type { Metadata } from "next";
+import { Toaster } from "@/components/ui/toaster";
 
 const poppins = Poppins({
     adjustFontFallback: true,
@@ -38,6 +39,7 @@ export default function RootLayout({
                 )}
             >
                 {children}
+                <Toaster />
             </body>
         </html>
     );

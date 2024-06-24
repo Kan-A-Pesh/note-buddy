@@ -1,5 +1,5 @@
 import AuthForm from "@/components/auth/AuthForm";
-import { login } from "./actions";
+import { login } from "./login.actions";
 
 export default async function LoginPage() {
     return (

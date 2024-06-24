@@ -1,11 +1,8 @@
-export enum HandleValidationError {
-    TOO_SHORT = "TOO_SHORT",
-    TOO_LONG = "TOO_LONG",
-    INVALID_CHARACTER = "INVALID_CHARACTER",
-    MUST_START_WITH_LETTER = "MUST_START_WITH_LETTER",
-}
+import HandleValidationError from "../errors/validationHandle.errors";
 
-export function validateHandle(handle: string): HandleValidationError[] {
+export default function validateHandle(
+    handle: string
+): HandleValidationError[] {
     const errors = [];
 
     if (handle.length < 3) {

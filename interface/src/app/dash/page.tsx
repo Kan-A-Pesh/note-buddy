@@ -2,8 +2,9 @@
 
 import { createClient } from "@/utils/supabase/server";
 import { Suspense } from "react";
-import ProjectEmpty from "./ProjectEmpty";
-import ProjectList from "./ProjectList";
+import ProjectEmpty from "./(create)/ProjectEmpty";
+import ProjectList from "./(create)/ProjectList";
+import { createProject } from "./(create)/createProject.actions";
 
 export default async function PrivatePage() {
     const supabase = createClient();
@@ -18,7 +19,7 @@ export default async function PrivatePage() {
         <div className="p-4 h-full flex flex-col">
             <Suspense fallback={<div>Loading...</div>}>
                 {!userProjects.data || userProjects.data.length === 0 ? (
-                    <ProjectEmpty />
+                    <ProjectEmpty createProject={createProject} />
                 ) : (
                     <ProjectList projects={userProjects.data} />
                 )}

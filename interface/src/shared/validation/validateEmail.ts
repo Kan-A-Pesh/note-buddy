@@ -1,8 +1,6 @@
-export enum EmailValidationError {
-    INVALID_EMAIL = "INVALID_EMAIL",
-}
+import EmailValidationError from "../errors/validationEmail.errors";
 
-export function validateEmail(email: string): EmailValidationError[] {
+export default function validateEmail(email: string): EmailValidationError[] {
     const errors = [];
     const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 

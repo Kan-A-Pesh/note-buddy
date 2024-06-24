@@ -3,9 +3,9 @@
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { DatabaseError } from "@/lib/error/databaseError";
-import type { EmailValidationError } from "@/lib/validation/validateEmail";
-import type { PasswordValidationError } from "@/lib/validation/validatePassword";
+import AuthenticationError from "@/shared/errors/authentication.errors";
+import EmailValidationError from "@/shared/errors/validationEmail.errors";
+import PasswordValidationError from "@/shared/errors/validationPassword.errors";
 import { useState } from "react";
 
 interface Props {
@@ -13,13 +13,13 @@ interface Props {
         email: string,
         password: string
     ) => Promise<
-        (EmailValidationError | PasswordValidationError | DatabaseError)[]
+        (EmailValidationError | PasswordValidationError | AuthenticationError)[]
     >;
 }
 
 export default function AuthForm({ authAction }: Props) {
     const [errors, setErrors] = useState<
-        (EmailValidationError | PasswordValidationError | DatabaseError)[]
+        (EmailValidationError | PasswordValidationError | AuthenticationError)[]
     >([]);
 
     const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
@@ -50,7 +50,7 @@ export default function AuthForm({ authAction }: Props) {
                     key={index}
                     className="p-1 rounded-lg bg-red-300 text-red-800 text-center border border-red-800 w-full max-w-sm"
                 >
-                    {error}
+                    {error.getMessage()}
                 </div>
             ))}
 

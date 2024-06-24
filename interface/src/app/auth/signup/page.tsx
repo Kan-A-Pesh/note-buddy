@@ -1,5 +1,5 @@
 import AuthForm from "@/components/auth/AuthForm";
-import { signup } from "./actions";
+import { signup } from "./signup.actions";
 
 export default async function SignupPage() {
     return (

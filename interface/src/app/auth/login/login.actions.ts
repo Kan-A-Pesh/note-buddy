@@ -2,12 +2,13 @@
 
 import { revalidatePath } from "next/cache";
 import { createClient } from "@/utils/supabase/server";
-import { DatabaseError, fromSupabaseError } from "@/lib/error/databaseError";
+import AuthenticationError from "@/shared/errors/authentication.errors";
+import parseSupabaseAuthError from "@/lib/error/parseSupabaseAuthError";
 
 export async function login(
     email: string,
     password: string
-): Promise<DatabaseError[]> {
+): Promise<AuthenticationError[]> {
     const supabase = createClient();
 
     const { error } = await supabase.auth.signInWithPassword({
@@ -16,7 +17,7 @@ export async function login(
     });
 
     if (error) {
-        return [fromSupabaseError(error)];
+        return [parseSupabaseAuthError(error)];
     }
 
     revalidatePath("/", "layout");

@@ -1,12 +1,8 @@
-export enum PasswordValidationError {
-    TOO_SHORT = "TOO_SHORT",
-    MUST_INCLUDE_NUMBER = "MUST_INCLUDE_NUMBER",
-    MUST_INCLUDE_SPECIAL_CHARACTER = "MUST_INCLUDE_SPECIAL_CHARACTER",
-    MUST_INCLUDE_UPPERCASE_LETTER = "MUST_INCLUDE_UPPERCASE_LETTER",
-    MUST_INCLUDE_LOWERCASE_LETTER = "MUST_INCLUDE_LOWERCASE_LETTER",
-}
+import PasswordValidationError from "../errors/validationPassword.errors";
 
-export function validatePassword(password: string): PasswordValidationError[] {
+export default function validatePassword(
+    password: string
+): PasswordValidationError[] {
     const errors = [];
 
     if (password.length < 8) {
